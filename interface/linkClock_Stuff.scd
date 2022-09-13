@@ -31,7 +31,7 @@ fork{
         Ndef(\click, Pbind(
             \instrument, \krClick,
             \beatsPerSec, ~tempo.bus.asMap,
-            \subdiv,1,
+            \subdiv,4,
             \dur, 1,
         ));
         ">>> access tempo proxy: ~tempo.kr in synths \n>>> or ~tempo.bus.asMap in patterns <<<\n".postString;

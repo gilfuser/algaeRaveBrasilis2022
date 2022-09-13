@@ -187,7 +187,6 @@ SynthDef(\saw, { | att = 0.001, rel = 0.2, lofreq = 1000, hifreq = 3000, pan=0, 
 }, metadata: ( specs: ( att: [0.002,1], rel: [0.02,2] ) ) ).add;
 );
 
-(instrument: \saw).play;
 
 (
 SynthDef(\bazz, { |  crunchy = 200, att = 0.025, dec = 0.6, rel = 0.5, amp=0.01, pan=0, gate = 1, sustain = 1, freq, out |
@@ -937,5 +936,6 @@ postf("\n*** % SynthDefs have a freq input: *** access them with \nq.tonalDefs;\
 Spec.add(\sustain, [0.04,4]);
 
 
+(instrument: \saw).play;
 
 
