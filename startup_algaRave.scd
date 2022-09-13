@@ -44,7 +44,7 @@ s.waitForBoot({
     Ndef(\allOrbs).gui;
     (
         Ndef(\allOrbs, {
-            var in = [InFeedback.ar([2,4,6],1),InFeedback.ar([3,5,7],1)];
+            var in = [InFeedback.ar([2,4,6,8],1),InFeedback.ar([3,5,7,9],1)];
             OffsetOut.ar(0, in)
         }).play;
     )
