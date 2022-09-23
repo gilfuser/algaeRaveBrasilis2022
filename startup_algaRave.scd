@@ -1,5 +1,8 @@
 defer{ Server.killAll };
+// Quarks.install("https://github.com/madskjeldgaard/plugins.quark")
+// Plugins.gui
 q = q ? ();
+
 
 " >>>>>>>>>>>>> startup GERAL <<<<<<<<<<<<<".postln;
 "\n**********  loading serverConfig:  **********".postln;
