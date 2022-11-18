@@ -1,5 +1,4 @@
 q = q ? ();
-
 (
 q.fx = /*q.fxf ?*/ (
 
@@ -111,7 +110,6 @@ q.fx = /*q.fxf ?*/ (
 )
 );
 q.fx.know = true;
-
 q.fx[\modelay].addSpec(
     \mdtime, [0,4],
     \mdtimel, [0,4],

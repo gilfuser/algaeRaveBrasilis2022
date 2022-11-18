@@ -1,5 +1,6 @@
 // https://scsynth.org/t/linkclock-tempobusclock-linkbusclock/6145
 fork{
+    var ctl;
     "cd /home/skmecs/Carabiner && ./Carabiner".runInTerminal;
     s.sync;
     0.2.wait;
@@ -18,38 +19,32 @@ fork{
     0.1.wait;
     Ndef(\click, { DC.kr(0) }).quant_(1).clock_(l);
     0.1.wait;
-    if (p != nil)
-    {
-        var ctl;
-        p.push;
-        ~tempo = l.tempo;  // numeric proxy
+    p = p ?? ProxySpace.push;
 
-        ctl = SimpleController(l)
-        .put(\tempo, { ~tempo = l.tempo })
-        .put(\stop, { ctl.remove });
+    ~tempo = l.tempo;  // numeric proxy
 
-        Ndef(\click, Pbind(
-            \instrument, \krClick,
-            \beatsPerSec, ~tempo.bus.asMap,
-            \subdiv,4,
-            \dur, 1,
-        ));
-        ">>> access tempo proxy: ~tempo.kr in synths \n>>> or ~tempo.bus.asMap in patterns <<<\n".postString;
-    }
-    {
-        var ctl;
-        Ndef(\tempo, l.tempo);  // numeric proxy
+    ctl = SimpleController(l)
+    .put(\tempo, { ~tempo = l.tempo })
+    // .put(\tempo, { Ndef(\tempo, l.tempo) })
+    .put(\stop, { ctl.remove });
 
-        ctl = SimpleController(l)
-        .put(\tempo, { Ndef(\tempo, l.tempo) })
-        .put(\stop, { ctl.remove });
+    ~click = Pbind(
+    \instrument, \krClick,
+    \beatsPerSec, ~tempo.bus.asMap,
+    \subdiv,4,
+    \dur, 1,
+    );
 
-        Ndef(\click, Pbind(
-        \instrument, \krClick,
-        \beatsPerSec, Ndef(\tempo).bus.asMap,
-        \dur, 1
-        ));
-        ">>> access tempo proxy: Ndef(\\tempo).kr in synths \n>>> or Ndef(\\tempo).bus.asMap in patterns <<<".postln;
-    };
+    ">>> access tempo proxy: ~tempo.kr in synths \n>>> or ~tempo.bus.asMap in patterns <<<\n".postString;
+    // {
+    //     Ndef(\tempo, l.tempo);  // numeric proxy
+    //
+    //     Ndef(\click, Pbind(
+    //     \instrument, \krClick,
+    //     \beatsPerSec, Ndef(\tempo).bus.asMap,
+    //     \dur, 1
+    //     ));
+    //     ">>> access tempo proxy: Ndef(\\tempo).kr in synths \n>>> or Ndef(\\tempo).bus.asMap in patterns <<<".postln;
+    // };
 };
-"***** linkClock Stuff loaded. *****\n*** Acess control click through Ndef(\\click).kr ***\n".postString
+// "***** linkClock Stuff loaded. *****\n*** Acess control click through Ndef(\\click).kr ***\n".postString

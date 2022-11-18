@@ -2,8 +2,6 @@ defer{ Server.killAll };
 // Quarks.install("https://github.com/madskjeldgaard/plugins.quark")
 // Plugins.gui
 q = q ? ();
-
-
 " >>>>>>>>>>>>> startup GERAL <<<<<<<<<<<<<".postln;
 "\n**********  loading serverConfig:  **********".postln;
 // more latency gives more accurate timing and quantizing. Less latency gives better instrument feeling with imediate response
@@ -26,6 +24,7 @@ s.options
 s.recChannels_(10);
 
 s.waitForBoot({
+// asdasdas
     t = TempoClock.default;
     q.mod = MFunc(); "q.mod = MFunc\n".postString;
     Pdefn(\scale, Scale.choose(7, 12)).source.name;
@@ -46,11 +45,11 @@ s.waitForBoot({
     wait(0.2);
     Ndef(\allOrbs).gui;
     (
-        Ndef(\allOrbs, {
+     Ndef(\allOrbs, {
             var in = [InFeedback.ar([2,4,6,8],1),InFeedback.ar([3,5,7,9],1)];
             OffsetOut.ar(0, in)
         }).play;
-    )
+    );
     wait(0.2);
     "FX/vstMainFX.scd".loadRelative;
     wait(0.2);

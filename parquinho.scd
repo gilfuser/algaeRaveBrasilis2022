@@ -1,7 +1,13 @@
-p.push
+p.push;
+
+s.meter
 ().play
-~vai.play(2)
+~vai.play
+s.makeGui
+Troop.start
 s.quit
+./startup_algaRave.scd
+SinOscFB.ar(220) * 0.2
 ~vai[0] = { VarSaw.ar(\freq.kr(220) * LFNoise2.ar(0.25).range(0.95, 1.05)  * [1, 1.01], SinOsc.kr(0.25, [0.5pi, 1.5pi]).range(0,1) ) * \amp.kr(0.2) }
 ~vai1.fadeTime = 0
 ~dustdecay = {Decay.ar( Ndef(\click).kr, ~tempo.kr)}
