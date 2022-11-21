@@ -21,7 +21,7 @@ s.options
 .numInputBusChannels_(2);
 // .sampleRate_(4800)
 // .device = "ASIO : ASIO4ALL v2"; // set this to your hardware output channel size, if necessary
-s.recChannels_(10);
+s.recChannels_(2);
 
 s.waitForBoot({
 // asdasdas
@@ -29,28 +29,29 @@ s.waitForBoot({
     q.mod = MFunc(); "q.mod = MFunc\n".postString;
     Pdefn(\scale, Scale.choose(7, 12)).source.name;
     wait(0.2);
-    "interface/proxySpace_Stuff.scd".loadRelative;
+    ( Platform.userHomeDir ++ "/SuperCollider/interface/proxySpace_Stuff.scd" ).load;
     wait(0.2);
-    "interface/linkClock_Stuff.scd".loadRelative;
+    ( Platform.userHomeDir ++ "/SuperCollider/interface/click_in_sync.scd" ).load;
     wait(0.2);
-    "libs/_SynthLib.scd".loadRelative;
+    ( Platform.userHomeDir ++ "/SuperCollider/libs/_SynthLib.scd" ).load;
     wait(0.2);
-    "FX/_fxFunc.scd".loadRelative;
+    ( Platform.userHomeDir ++ "/SuperCollider/libs/_fxFunc.scd" ).load;
     wait(0.2);
-    "FX/_fxLib.scd".loadRelative;
+    ( Platform.userHomeDir ++ "/SuperCollider/libs/_fxLib.scd" ).load;
     wait(0.2);
+    ( Platform.userHomeDir ++ "SuperCollider/algoRaveBR2022/FX/mainCompressor_vst.scd" ).load;
     "toca/swingfy.scd".loadRelative;
     wait(0.2);
     // "FX/mainFX.scd".loadRelative; // explode se a NDef abaixo estiver ligada
-    wait(0.2);
-    Ndef(\allOrbs).gui;
-    (
+    // wait(0.2);
+    // Ndef(\allOrbs).gui;
+    /*(
      Ndef(\allOrbs, {
             var in = [InFeedback.ar([2,4,6,8],1),InFeedback.ar([3,5,7,9],1)];
             OffsetOut.ar(0, in)
         }).play;
-    );
+    )*/;
     wait(0.2);
-    "FX/vstMainFX.scd".loadRelative;
+    ( Platform.userHomeDir ++ "SuperCollider/algoRaveBR2022/FX/vstMainFX.scd" ).load;
     wait(0.2);
 })
